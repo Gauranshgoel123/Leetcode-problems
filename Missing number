@@ -1,0 +1,16 @@
+class Solution(object):
+    def missingNumber(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+
+        """assuming that the missing number is the last number in the sequence."""
+        n = len(nums) + 1
+        """sum of the sequence from 0 to n (inclusive)"""
+        total = (n * (n-1)) // 2
+        
+        for num in nums:
+            total=total - num
+        
+        return total
