@@ -2,7 +2,7 @@ def print_sequence(N):
     current = N
     step = -5
 
-    while current != N or step < 5:
+    while current <= N or step < 5:
         print(current, end=" ")
         
         if current <= 0 and step < 5:
