@@ -1,2 +1,2 @@
 # Leetcode-Array-problems
-Practicing easy leetcode array problems
+Practicing leetcode problems
