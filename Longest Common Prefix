@@ -1,3 +1,5 @@
+//GOOD QUESTION TO DO
+
 char * longestCommonPrefix(char ** strs, int strsSize){
   for(int c=0;; ++c)
 	{
