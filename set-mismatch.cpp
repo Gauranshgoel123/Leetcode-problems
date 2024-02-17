@@ -1,0 +1,41 @@
+// Calculate Expected Sum:
+
+// Calculate the expected sum of numbers from 1 to n using the formula (n * (n + 1)) / 2. This assumes no duplicates and no missing numbers.
+// Calculate Array and Unique Sums:
+
+// Calculate the sum of all elements in the array (array_sum).
+// Use an unordered_set (s) to get the unique elements in the array and calculate their sum (unique_sum).
+// Find Missing and Duplicate:
+
+// The difference between the expected sum and the unique sum gives the missing number (missing).
+// The difference between the array sum and the unique sum gives the duplicate number (duplicate).
+// Return Result:
+
+// Return a vector containing the duplicate and missing numbers.
+
+class Solution {
+public:
+    vector<int> findErrorNums(vector<int>& nums) {
+        int n = nums.size();
+        int actual_sum = n * (n + 1) / 2;
+        int array_sum = 0;
+        int unique_sum = 0;
+        unordered_set<int> s(nums.begin(), nums.end());
+
+        for (int a : nums) {
+            array_sum += a;
+        }
+
+
+        for (int a : s) {
+            unique_sum += a;
+        }
+
+        int missing = actual_sum - unique_sum;
+        int duplicate = array_sum - unique_sum;
+
+        return {duplicate, missing};
+    }
+};
+
+
