@@ -23,8 +23,6 @@
 //         return {dup,missing};
 //     }
 // };
-
-
 // Calculate Expected Sum:
 // Calculate the expected sum of numbers from 1 to n using the formula (n * (n + 1)) / 2. This assumes no duplicates and no missing numbers.
 // Calculate Array and Unique Sums:
@@ -37,30 +35,34 @@
 // Return Result:
 
 // Return a vector containing the duplicate and missing numbers.
+static const auto _ = []() {
+  std::ios::sync_with_stdio(false);
+  std::cout.tie(nullptr);
+  std::cin.tie(nullptr);
+  return nullptr;
+}();
+
 
 class Solution {
 public:
     vector<int> findErrorNums(vector<int>& nums) {
-        int n = nums.size();
-        int actual_sum = n * (n + 1) / 2;
-        int array_sum = 0;
-        int unique_sum = 0;
-        unordered_set<int> s(nums.begin(), nums.end());
-
-        for (int a : nums) {
-            array_sum += a;
+        const auto n = nums.size();
+        const long int actual_sum =n*(n+1)/2;
+        long int array_sum = 0;
+        std::vector<bool> occurences(n+1, false);
+        int dupl = -1;
+        for(const auto &i : nums) {
+            if(occurences[i]) {
+                dupl = i;
+            }
+            occurences[i] = true;
+            array_sum += i;
         }
 
-
-        for (int a : s) {
-            unique_sum += a;
-        }
-
-        int missing = actual_sum - unique_sum;
-        int duplicate = array_sum - unique_sum;
-
-        return {duplicate, missing};
+        array_sum -= dupl;
+        
+        
+        return {dupl,static_cast<int>(actual_sum-array_sum)};
     }
 };
-
 
