@@ -52,3 +52,21 @@
         }
     }
 }
+//alternate solution
+// class Solution {
+//     public int findJudge(int n, int[][] trust) {
+//         int ans[] = new int[n+1];
+//         for(int[] relation : trust){
+//             int trusting = relation[0];
+//             int trusted= relation[1];
+//             ans[trusting]--;
+//             ans[trusted]++;
+//         }
+//         for(int i=1;i<=n;i++){
+//             if(ans[i]==n-1){
+//                 return i;
+//             }
+//         }
+//         return -1;
+//     }
+// }
