@@ -1,4 +1,5 @@
 public class Solution {
+    //initialized 46 size beceause of the given constraints in the question
     int[] dp = new int[46];
     
     public int solve(int n) {
