@@ -1,3 +1,4 @@
+997. squares-of-a-sorted-array
 Given an integer array nums sorted in non-decreasing order, return an array of the squares of each number sorted in non-decreasing order.
 
  
@@ -23,7 +24,7 @@ Output: [4,9,9,49,121]
 // O(1)O(1)O(1)
 
 // Code
-
+//BRUTE FORCE
 
 // class Solution {
 //     public int[] sortedSquares(int[] nums) {
