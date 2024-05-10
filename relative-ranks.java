@@ -1,30 +1,67 @@
+// Best solution
+// beats 99%
+// hashing
 class Solution {
     public String[] findRelativeRanks(int[] score) {
-        PriorityQueue<Integer> p=new PriorityQueue<>((a,b)->(b-a));
-        int n= score.length;
-        for(int i=0;i<n;i++){
-            p.offer(score[i]);
+        int max=0;
+        for (int i=0;i<score.length;i++){
+            max=Math.max(max,score[i]);
         }
-        String [] s=new String[p.peek()+1];
-        String [] s1=new String[n];
-        for(int i=0;i<n;i++){
-            if(i == 0){
-                s[p.poll()]="Gold Medal";
-            }else if(i == 1){
-                s[p.poll()]="Silver Medal";
-            }else if(i == 2){
-                s[p.poll()]="Bronze Medal";
-            }else{
-                s[p.poll()]=String.valueOf(i+1);
+        int[] scoreindex=new int[max+1];
+        for(int i=0;i<score.length;i++){
+            scoreindex[score[i]]=i+1;
+        }
+        String[] ans= new String[score.length];
+        int place=1;
+        for(int i=max;i>=0;i--){
+            int actualindex=scoreindex[i]-1;
+            if(scoreindex[i]==0) continue;
+            if(place==1){
+                ans[actualindex]="Gold Medal";
             }
+            else if(place==2){
+                ans[actualindex]="Silver Medal";
+            }
+            else if(place==3){
+                ans[actualindex]="Bronze Medal";
+            }
+            else{
+                ans[actualindex]=String.valueOf(place);
+            }
+            place++;
         }
-        for(int i=0;i< n;i++){
-            s1[i]=s[score[i]];
-        }
-
-       return s1;
+        return ans;
     }
 }
+
+
+// class Solution {
+//     public String[] findRelativeRanks(int[] score) {
+//         PriorityQueue<Integer> p=new PriorityQueue<>((a,b)->(b-a));
+//         int n= score.length;
+//         for(int i=0;i<n;i++){
+//             p.offer(score[i]);
+//         }
+//         String [] s=new String[p.peek()+1];
+//         String [] s1=new String[n];
+//         for(int i=0;i<n;i++){
+//             if(i == 0){
+//                 s[p.poll()]="Gold Medal";
+//             }else if(i == 1){
+//                 s[p.poll()]="Silver Medal";
+//             }else if(i == 2){
+//                 s[p.poll()]="Bronze Medal";
+//             }else{
+//                 s[p.poll()]=String.valueOf(i+1);
+//             }
+//         }
+//         for(int i=0;i< n;i++){
+//             s1[i]=s[score[i]];
+//         }
+
+//        return s1;
+//     }
+// }
 // Approach 1 : Reverse sort
 // Intuition
 // Make an array of sorted pair where the first element is the index and the second one is the score value. Now sort the array in decreasing order of score value. Then iterate over all those elements. So now iterate over all those elements one by one from the start of sorted pair array and put the score to the corresponding index of the answer array.
